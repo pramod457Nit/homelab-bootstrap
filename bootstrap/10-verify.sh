@@ -192,7 +192,7 @@ if has_nvidia_gpu; then
     echo
     echo "INFO  Docker GPU test is not run by default because it pulls a large CUDA image."
     echo "INFO  Manual test:"
-    echo "      docker run --rm --gpus all nvidia/cuda:12.9.0-base-ubuntu24.04 nvidia-smi"
+    echo "      homelab-bootstrap nvidia --container-test"
   fi
 else
   optional_skip "NVIDIA GPU not detected"
