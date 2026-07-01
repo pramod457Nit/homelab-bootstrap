@@ -17,6 +17,7 @@ Usage:
   ./bootstrap.sh help
   ./bootstrap.sh doctor
   ./bootstrap.sh doctor --json
+  ./bootstrap.sh doctor --sudo
   ./bootstrap.sh verify
   ./bootstrap.sh security
   ./bootstrap.sh security --dry-run
@@ -31,6 +32,7 @@ Commands:
   help                 Show help
   doctor               Run local health check
   doctor --json        Run local health check and output JSON
+  doctor --sudo        Run health check with sudo-backed checks
   verify               Same as doctor
   security             Show security baseline guidance
   security --dry-run   Show security changes without applying

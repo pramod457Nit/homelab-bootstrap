@@ -6,9 +6,25 @@ source "$ROOT_DIR/lib/logger.sh"
 source "$ROOT_DIR/lib/common.sh"
 
 json_mode=false
+sudo_mode=false
 
-if [ "${1:-}" = "--json" ]; then
-  json_mode=true
+for arg in "$@"; do
+  case "$arg" in
+    --json)
+      json_mode=true
+      ;;
+    --sudo)
+      sudo_mode=true
+      ;;
+    *)
+      echo "Unknown doctor option: $arg" >&2
+      exit 1
+      ;;
+  esac
+done
+
+if [ "$sudo_mode" = true ]; then
+  sudo -v
 fi
 
 required_score=0
