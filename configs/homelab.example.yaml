@@ -1,0 +1,34 @@
+profile:
+  hostname: ""
+  timezone: "Asia/Kolkata"
+
+modules:
+  system: true
+  security: true
+  docker: true
+  nvidia: "auto"
+  tailscale: true
+  azure_arc: false
+  azure_monitor: false
+  update_manager: false
+  cost_guardrails: false
+
+azure:
+  subscription_id: ""
+  tenant_id: ""
+  resource_group: "rg-homelab"
+  location: "southindia"
+  log_analytics_workspace: "law-homelab"
+  azure_monitor_workspace: ""
+  machine_name: ""
+  tags:
+    Environment: "Homelab"
+    Purpose: "HybridLearning"
+    Owner: ""
+
+security:
+  ssh_keys_only: false
+  ufw: true
+  fail2ban: true
+  unattended_upgrades: true
+  allow_ssh_over_tailscale_only: false
