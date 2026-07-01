@@ -38,3 +38,8 @@ If an NVIDIA GPU is detected, `doctor` validates:
 - `nvidia-smi`
 
 If no NVIDIA GPU is detected, GPU checks are skipped instead of failing. This allows the repo to work on both GPU and non-GPU Ubuntu homelabs.
+
+
+## Install Location
+
+Installs the repo into `~/.local/share/homelab-bootstrap/repo` and creates a symlink at `~/.local/bin/homelab-bootstrap`.

@@ -35,3 +35,8 @@ It does not:
 - Configure SSH
 - Connect Azure
 - Apply updates
+
+
+## Install Location
+
+Installs the repo into `~/.local/share/homelab-bootstrap/repo` and creates a symlink at `~/.local/bin/homelab-bootstrap`.
