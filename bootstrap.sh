@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
 
-ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_PATH="$(readlink -f "${BASH_SOURCE[0]}")"
+ROOT_DIR="$(cd "$(dirname "$SCRIPT_PATH")" && pwd)"
 
 source "$ROOT_DIR/lib/logger.sh"
 source "$ROOT_DIR/lib/common.sh"
@@ -22,6 +23,8 @@ Usage:
   ./bootstrap.sh security
   ./bootstrap.sh security --dry-run
   ./bootstrap.sh security --apply
+  ./bootstrap.sh security --tailscale-only-ssh-dry-run
+  ./bootstrap.sh security --tailscale-only-ssh
   ./bootstrap.sh azure-arc
   ./bootstrap.sh azure-monitor
   ./bootstrap.sh update-manager
