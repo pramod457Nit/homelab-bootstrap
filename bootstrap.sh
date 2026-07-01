@@ -36,6 +36,9 @@ Usage:
   ./bootstrap.sh nvidia --dry-run
   ./bootstrap.sh nvidia --verify
   ./bootstrap.sh nvidia --container-test
+  ./bootstrap.sh tailscale --dry-run
+  ./bootstrap.sh tailscale --verify
+  ./bootstrap.sh tailscale --netcheck
 
 Commands:
   help                 Show help
@@ -52,6 +55,7 @@ Commands:
   update               Safely check or apply Ubuntu package updates
   docker               Install or verify Docker Engine
   nvidia              Verify NVIDIA GPU and container readiness
+  tailscale           Verify Tailscale remote access readiness
 HELP
 }
 
@@ -82,6 +86,9 @@ case "$cmd" in
     ;;
   nvidia)
     bash "$ROOT_DIR/bootstrap/13-nvidia.sh" "$@"
+    ;;
+  tailscale)
+    bash "$ROOT_DIR/bootstrap/14-tailscale.sh" "$@"
     ;;
   *)
     error "Unknown command: $cmd"
