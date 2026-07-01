@@ -33,6 +33,9 @@ Usage:
   ./bootstrap.sh docker --dry-run
   ./bootstrap.sh docker --apply
   ./bootstrap.sh docker --verify
+  ./bootstrap.sh nvidia --dry-run
+  ./bootstrap.sh nvidia --verify
+  ./bootstrap.sh nvidia --container-test
 
 Commands:
   help                 Show help
@@ -48,6 +51,7 @@ Commands:
   update-manager       Show Azure Update Manager guidance
   update               Safely check or apply Ubuntu package updates
   docker               Install or verify Docker Engine
+  nvidia              Verify NVIDIA GPU and container readiness
 HELP
 }
 
@@ -75,6 +79,9 @@ case "$cmd" in
     ;;
   docker)
     bash "$ROOT_DIR/bootstrap/12-docker.sh" "$@"
+    ;;
+  nvidia)
+    bash "$ROOT_DIR/bootstrap/13-nvidia.sh" "$@"
     ;;
   *)
     error "Unknown command: $cmd"
