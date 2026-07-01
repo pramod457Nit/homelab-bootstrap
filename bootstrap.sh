@@ -24,6 +24,8 @@ Usage:
   ./bootstrap.sh azure-arc
   ./bootstrap.sh azure-monitor
   ./bootstrap.sh update-manager
+  ./bootstrap.sh update --dry-run
+  ./bootstrap.sh update --apply
 
 Commands:
   help                 Show help
@@ -36,6 +38,7 @@ Commands:
   azure-arc            Show Azure Arc onboarding guidance
   azure-monitor        Show Azure Monitor guidance
   update-manager       Show Azure Update Manager guidance
+  update               Safely check or apply Ubuntu package updates
 HELP
 }
 
@@ -57,6 +60,9 @@ case "$cmd" in
     ;;
   update-manager)
     bash "$ROOT_DIR/bootstrap/09-update-manager.sh" "$@"
+    ;;
+  update)
+    bash "$ROOT_DIR/bootstrap/11-update.sh" "$@"
     ;;
   *)
     error "Unknown command: $cmd"
