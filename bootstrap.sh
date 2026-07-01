@@ -30,6 +30,9 @@ Usage:
   ./bootstrap.sh update-manager
   ./bootstrap.sh update --dry-run
   ./bootstrap.sh update --apply
+  ./bootstrap.sh docker --dry-run
+  ./bootstrap.sh docker --apply
+  ./bootstrap.sh docker --verify
 
 Commands:
   help                 Show help
@@ -44,6 +47,7 @@ Commands:
   azure-monitor        Show Azure Monitor guidance
   update-manager       Show Azure Update Manager guidance
   update               Safely check or apply Ubuntu package updates
+  docker               Install or verify Docker Engine
 HELP
 }
 
@@ -68,6 +72,9 @@ case "$cmd" in
     ;;
   update)
     bash "$ROOT_DIR/bootstrap/11-update.sh" "$@"
+    ;;
+  docker)
+    bash "$ROOT_DIR/bootstrap/12-docker.sh" "$@"
     ;;
   *)
     error "Unknown command: $cmd"
