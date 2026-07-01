@@ -39,7 +39,11 @@ fi
 
 echo
 echo "== Update installed copy =="
-curl -fsSL https://raw.githubusercontent.com/pramod457Nit/homelab-bootstrap/main/install.sh | bash
+tmp_installer="$(mktemp)"
+curl -fsSL https://raw.githubusercontent.com/pramod457Nit/homelab-bootstrap/main/install.sh -o "$tmp_installer"
+bash -n "$tmp_installer"
+bash "$tmp_installer"
+rm -f "$tmp_installer"
 
 echo
 echo "== Installed command verification =="
