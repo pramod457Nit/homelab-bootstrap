@@ -12,12 +12,18 @@ check() {
   local name="$1"
   shift
   total=$((total + 1))
+
   if "$@" >/dev/null 2>&1; then
     pass "$name"
     score=$((score + 1))
   else
     fail "$name"
   fi
+}
+
+optional_skip() {
+  local name="$1"
+  skip "$name"
 }
 
 echo
@@ -41,8 +47,28 @@ check "Docker installed" command_exists docker
 check "Docker service active" service_active docker
 check "Docker Compose installed" docker compose version
 check "Tailscale installed" command_exists tailscale
-check "NVIDIA GPU detected" has_nvidia_gpu
-check "nvidia-smi works" command_exists nvidia-smi
+
+# GPU is optional.
+# If no NVIDIA GPU exists, do not fail the doctor check.
+if has_nvidia_gpu; then
+  pass "NVIDIA GPU detected"
+
+  total=$((total + 1))
+  score=$((score + 1))
+
+  check "nvidia-smi works" command_exists nvidia-smi
+
+  if command_exists docker && command_exists nvidia-smi; then
+    echo
+    echo "INFO  Docker GPU test is not run by default because it pulls a large CUDA image."
+    echo "INFO  Manual test:"
+    echo "      docker run --rm --gpus all nvidia/cuda:12.9.0-base-ubuntu24.04 nvidia-smi"
+  fi
+else
+  optional_skip "NVIDIA GPU not detected"
+  optional_skip "nvidia-smi not required"
+fi
+
 check "Azure Arc agent installed" command_exists azcmagent
 
 if command_exists azcmagent; then

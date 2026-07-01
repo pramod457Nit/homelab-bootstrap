@@ -27,3 +27,14 @@ Bootstrap and validate a production-style Ubuntu homelab or AI workstation with 
 git clone https://github.com/<your-user>/homelab-bootstrap.git
 cd homelab-bootstrap
 ./bootstrap.sh doctor
+
+## GPU Behavior
+
+NVIDIA GPU support is optional.
+
+If an NVIDIA GPU is detected, `doctor` validates:
+
+- NVIDIA hardware detection
+- `nvidia-smi`
+
+If no NVIDIA GPU is detected, GPU checks are skipped instead of failing. This allows the repo to work on both GPU and non-GPU Ubuntu homelabs.
