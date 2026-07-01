@@ -26,7 +26,11 @@ Usage:
   ./bootstrap.sh security --tailscale-only-ssh-dry-run
   ./bootstrap.sh security --tailscale-only-ssh
   ./bootstrap.sh azure-arc
+  ./bootstrap.sh azure-arc --dry-run
+  ./bootstrap.sh azure-arc --verify
   ./bootstrap.sh azure-monitor
+  ./bootstrap.sh azure-monitor --dry-run
+  ./bootstrap.sh azure-monitor --verify
   ./bootstrap.sh update-manager
   ./bootstrap.sh update --dry-run
   ./bootstrap.sh update --apply
@@ -49,8 +53,8 @@ Commands:
   security             Show security baseline guidance
   security --dry-run   Show security changes without applying
   security --apply     Apply safe baseline security hardening
-  azure-arc            Show Azure Arc onboarding guidance
-  azure-monitor        Show Azure Monitor guidance
+  azure-arc            Verify Azure Arc connected machine status
+  azure-monitor        Verify Azure Monitor Agent local readiness
   update-manager       Show Azure Update Manager guidance
   update               Safely check or apply Ubuntu package updates
   docker               Install or verify Docker Engine
