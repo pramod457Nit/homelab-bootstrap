@@ -126,9 +126,11 @@ apply_tailscale_only_ssh() {
     exit 1
   fi
 
-  run_cmd "mkdir -p backups/security"
-  run_cmd "sudo cp /etc/ufw/user.rules backups/security/user.rules.before-tailscale-only-ssh 2>/dev/null || true"
-  run_cmd "sudo cp /etc/ufw/user6.rules backups/security/user6.rules.before-tailscale-only-ssh 2>/dev/null || true"
+  backup_dir="${HOME}/.local/share/homelab-bootstrap/backups/security/$(date +%Y%m%d-%H%M%S)"
+
+  run_cmd "mkdir -p \"$backup_dir\""
+  run_cmd "sudo cp /etc/ufw/user.rules \"$backup_dir/user.rules.before-tailscale-only-ssh\" 2>/dev/null || true"
+  run_cmd "sudo cp /etc/ufw/user6.rules \"$backup_dir/user6.rules.before-tailscale-only-ssh\" 2>/dev/null || true"
 
   # First allow SSH on Tailscale interface.
   run_cmd "sudo ufw allow in on tailscale0 to any port 22 proto tcp"

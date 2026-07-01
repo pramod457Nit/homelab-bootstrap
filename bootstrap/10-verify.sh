@@ -148,6 +148,7 @@ if [ "$json_mode" = false ]; then
 fi
 
 recommended_check "Tailscale installed" command_exists tailscale
+recommended_check "SSH restricted to Tailscale" ufw_ssh_restricted_to_tailscale
 
 if [ "$json_mode" = false ]; then
   echo

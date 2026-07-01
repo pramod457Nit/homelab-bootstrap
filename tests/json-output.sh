@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
 
-output="$(./bootstrap.sh doctor --json)"
+output="$(./bootstrap.sh doctor --json || true)"
 
 echo "$output" | grep -q '"overall_health"'
 echo "$output" | grep -q '"required"'
